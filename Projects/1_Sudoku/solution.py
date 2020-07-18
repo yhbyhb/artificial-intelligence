@@ -1,6 +1,6 @@
 
 from utils import *
-
+import copy
 
 row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
@@ -55,8 +55,15 @@ def naked_twins(values):
     Pseudocode for this algorithm on github:
     https://github.com/udacity/artificial-intelligence/blob/master/Projects/1_Sudoku/pseudocode.md
     """
-    # TODO: Implement this function!
-    raise NotImplementedError
+    
+    out = copy.deepcopy(values)
+    for boxA in values:
+        for boxB in peers[boxA]:
+            if (values[boxA] == values[boxB]) and (len(values[boxA]) == 2 and len(values[boxB]) == 2):
+                for peer in (peers[boxA] & peers[boxB]):
+                    for digit in values[boxA]:
+                        out[peer] = out[peer].replace(digit, '')
+    return out
 
 
 def eliminate(values):
