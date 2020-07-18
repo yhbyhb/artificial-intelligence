@@ -1,5 +1,7 @@
 # Artificial Intelligence Nanodegree Program Resources
 
+This is my personal repository for AI Nanodegree Program at Udacity.
+
 ## Classroom Exercises
 
 ### 1. Constraint Satisfaction Problems
