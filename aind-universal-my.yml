@@ -1,0 +1,21 @@
+name: aind
+channels:
+- anaconda
+- defaults
+dependencies:
+- cython
+- matplotlib
+- jupyter
+- nltk
+- nb_conda
+- pandas
+- pomegranate
+- pydot
+- pydotplus
+- scikit-learn
+- scipy
+- tqdm
+- pip:
+  - udacity-pa
+  - z3-solver
+  - pygame
