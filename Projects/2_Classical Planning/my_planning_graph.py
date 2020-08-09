@@ -39,7 +39,7 @@ class ActionLayer(BaseActionLayer):
         layers.ActionNode
         """
         for effect in self.children[actionA]:
-            if ~effect in self.parents[actionB]:                
+            if ~effect in self.parents[actionB]:
                 return True
 
         return False
@@ -157,7 +157,7 @@ class PlanningGraph:
         level_sum = 0
         for goal in self.goal:
             for cost, layer in enumerate(self.literal_layers):
-                if goal in layer:                    
+                if goal in layer:
                     level_sum += cost
                     # print('goal: ', goal, level_sum)
                     break
@@ -228,19 +228,18 @@ class PlanningGraph:
         """
         # TODO: implement setlevel heuristic        
         self.fill()
-        for i in range(len(self.literal_layers)):
+        for i, layer in enumerate(self.literal_layers):
             allGoalsMet = True
             for goal in self.goal:
-                if goal not in self.literal_layers[i]:
+                if goal not in layer:
                     allGoalsMet = False
             if not allGoalsMet:
                 continue
 
             goalsAreMutex = False
             for goal1,goal2 in combinations(self.goal,2):
-                if self.literal_layers[i].is_mutex(goal1,goal2):
+                if layer.is_mutex(goal1,goal2):
                     goalsAreMutex = True
-            
             if not goalsAreMutex:
                 return i
         return -1
