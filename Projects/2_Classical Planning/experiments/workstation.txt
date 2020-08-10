@@ -1,0 +1,13 @@
+H/W path    Device    Class      Description
+============================================
+                      system     Computer
+/0                    bus        Motherboard
+/0/0                  memory     24GiB System memory
+/0/1                  processor  Intel(R) Xeon(R) Silver 4116 CPU @ 2.10GHz
+/0/2                  system     PnP device PNP0b00
+/0/3        scsi0     storage    
+/0/3/0.0.0  /dev/sda  volume     256GiB Virtual Disk
+/0/3/0.0.1  /dev/sdb  volume     256GiB Virtual Disk
+/1          eth0      network    Ethernet interface
+/2          dummy0    network    Ethernet interface
+/3          bond0     network    Ethernet interface
