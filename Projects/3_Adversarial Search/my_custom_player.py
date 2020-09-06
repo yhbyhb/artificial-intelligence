@@ -20,6 +20,12 @@ class CustomPlayer(DataPlayer):
       any pickleable object to the self.context attribute.
     **********************************************************************
     """
+    def __init__(self, player_id):
+        super().__init__(player_id)
+        # print(f'__init__ of CustomPlayer')
+        self.score = self.baseline_score
+
+
     def get_action(self, state):
         """ Employ an adversarial search technique to choose an action
         available in the current state calls self.queue.put(ACTION) at least
@@ -68,12 +74,23 @@ class CustomPlayer(DataPlayer):
                     break
         # print(f'{last action's depth = {self.depth}')
 
-    def score(self, state):
+    def _weighted_score(self, state, w_p, w_o):
         own_loc = state.locs[self.player_id]
         opp_loc = state.locs[1 - self.player_id]
         own_liberties = state.liberties(own_loc)
         opp_liberties = state.liberties(opp_loc)
-        return len(own_liberties) - len(opp_liberties)
+        return w_p * len(own_liberties) - w_o * len(opp_liberties)
+
+    def baseline_score(self, state):
+        return self._weighted_score(state, 1, 1)
+
+    def heuristic_1_score(self, state):
+        m = state.ply_count / (9 * 11)
+        return self._weighted_score(state, 2 * m , 1)
+
+    def heuristic_2_score(self, state):
+        m = state.ply_count / (9 * 11)
+        return self._weighted_score(state, 1 , 2 * m)
 
     def minimax_alpha_beta_search(self, state, depth):
 
@@ -111,23 +128,3 @@ class CustomPlayer(DataPlayer):
                 best_move = action
         if best_move == None : best_move = state.actions()[0]
         return best_move
-
-    def minimax(self, state, depth):
-
-        def min_value(state, depth):
-            if state.terminal_test(): return state.utility(self.player_id)
-            if depth <= 0: return self.score(state)
-            value = float("inf")
-            for action in state.actions():
-                value = min(value, max_value(state.result(action), depth - 1))
-            return value
-
-        def max_value(state, depth):
-            if state.terminal_test(): return state.utility(self.player_id)
-            if depth <= 0: return self.score(state)
-            value = float("-inf")
-            for action in state.actions():
-                value = max(value, min_value(state.result(action), depth - 1))
-            return value
-
-        return max(state.actions(), key=lambda x: min_value(state.result(x), depth - 1))
