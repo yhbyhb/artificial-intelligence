@@ -1,4 +1,5 @@
 
+from isolation import DebugState, StopSearch
 from sample_players import DataPlayer
 
 
@@ -43,4 +44,90 @@ class CustomPlayer(DataPlayer):
         #          call self.queue.put(ACTION) at least once before time expires
         #          (the timer is automatically managed for you)
         import random
-        self.queue.put(random.choice(state.actions()))
+        # print('In get_action(), state received:')
+        # debug_board = DebugState.from_state(state)
+        # print(debug_board)
+
+        # randomly select a move as player 1 or 2 on an empty board, otherwise
+        # return the optimal minimax move at a fixed search depth of 3 plies
+        self.depth = 0
+        if state.ply_count < 2:
+            self.queue.put(random.choice(state.actions()))
+        else:
+            # iterative deepening
+            while True:
+                try:
+                    self.depth += 1
+                    action = self.minimax_alpha_beta_search(state, depth=self.depth)
+
+                    # clear every 5 enqueue
+                    # if self.queue.qsize() > 5: self.queue.get()
+                    self.queue.put(action)
+                except StopSearch:
+                    # print('catched StopSearch')
+                    break
+        # print(f'{last action's depth = {self.depth}')
+
+    def score(self, state):
+        own_loc = state.locs[self.player_id]
+        opp_loc = state.locs[1 - self.player_id]
+        own_liberties = state.liberties(own_loc)
+        opp_liberties = state.liberties(opp_loc)
+        return len(own_liberties) - len(opp_liberties)
+
+    def minimax_alpha_beta_search(self, state, depth):
+
+        def min_value(state, depth, alpha, beta):
+            if state.terminal_test(): return state.utility(self.player_id)
+            if depth <= 0: return self.score(state)
+            value = float("inf")
+            for action in state.actions():
+                value = min(value, max_value(state.result(action), depth - 1, alpha, beta))
+                if value <= alpha:
+                    return value
+                beta = min(beta, value)
+            return value
+
+        def max_value(state, depth, alpha, beta):
+            if state.terminal_test(): return state.utility(self.player_id)
+            if depth <= 0: return self.score(state)
+            value = float("-inf")
+            for action in state.actions():
+                value = max(value, min_value(state.result(action), depth - 1, alpha, beta))
+                if value >= beta:
+                    return value
+                alpha = max(alpha, value)
+            return value
+
+        alpha = float("-inf")
+        beta = float("inf")
+        best_score = float("-inf")
+        best_move = None
+        for action in state.actions():
+            value = min_value(state.result(action), depth - 1, alpha, beta)
+            alpha = max(alpha, value)
+            if value > best_score:
+                best_score = value
+                best_move = action
+        if best_move == None : best_move = state.actions()[0]
+        return best_move
+
+    def minimax(self, state, depth):
+
+        def min_value(state, depth):
+            if state.terminal_test(): return state.utility(self.player_id)
+            if depth <= 0: return self.score(state)
+            value = float("inf")
+            for action in state.actions():
+                value = min(value, max_value(state.result(action), depth - 1))
+            return value
+
+        def max_value(state, depth):
+            if state.terminal_test(): return state.utility(self.player_id)
+            if depth <= 0: return self.score(state)
+            value = float("-inf")
+            for action in state.actions():
+                value = max(value, min_value(state.result(action), depth - 1))
+            return value
+
+        return max(state.actions(), key=lambda x: min_value(state.result(x), depth - 1))
