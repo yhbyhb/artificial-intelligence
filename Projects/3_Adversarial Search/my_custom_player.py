@@ -23,7 +23,7 @@ class CustomPlayer(DataPlayer):
     def __init__(self, player_id):
         super().__init__(player_id)
         # print(f'__init__ of CustomPlayer')
-        self.score = self.baseline_score
+        self.score = self.heuristic_2_score
 
 
     def get_action(self, state):
