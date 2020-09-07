@@ -25,9 +25,9 @@ new_weight = play_count / board_size * 2
 ```
 `play_count` is cumulative count of the number of actions applied to the board.
 `board_size` is 9 x 11.
-And constant `2` is for changing behavior of heuristic when empty size of board is half. For example, if `weight_my = play_count / board_size * 2` and `weight_opponent = 1`, before half of board is filled, the heuristic priortizes #opponent_moves at the beginning of the game and then as total number of actions are increased, it priortizes #my_moves.
+And constant `2` is for changing behavior of heuristic when empty size of board is half. For example, if `weight_my = play_count / board_size * 2` and `weight_opponent = 1`, before half of board is filled, the heuristic prioritizes #opponent_moves at the beginning of the game and then as total number of actions are increased, it prioritizes #my_moves.
 
-So my two custom heuristics for this project are two.
+So, my two custom heuristics for this project are two.
 ### Heuristic 1
 ```
 play_count / board_size * 2 * #my_moves - #opponent_moves
@@ -52,7 +52,7 @@ Below table shows win percentage against each test agent with time limit 150ms
 |Heuristic 2| 98.0 | 95.5 | 84.5  | 44.5|
 
 
-Two tables of custom heuristics show win percentage against given test agents with various time limit.
+Two tables of custom heuristics show win percentage against given test agents with various time limit. Search depth can be big when time limit is higher.
 
 ### Heuristic 1
 |Time limit (ms) |Random|Greedy|Minimax|Self|
@@ -73,15 +73,18 @@ Two tables of custom heuristics show win percentage against given test agents wi
 |250  | 99.0 | 94.5 | 86.0 | 46.5 |
 
 
-
 ## Analysis
+Based on the first table, both custom heuristics perform similar or better than baseline heuristic.
 
+With heuristic 1, search time matters less with greedy and self agents but with other agents, search time seems no big relation.
+
+The search speed of heuristic 2 matters more when opponent is minimax agent. But when opponent is itself, search speed matters less. With other agents, search time seems no relation.
 
 ## Result Answers
 - **What features of the game does your heuristic incorporate, and why do you think those features matter in evaluating states during the search?**
 
-	I think 
+	I used number of total actions over total board size and number of each players moves. I think ratio of total actions at certain moment and board size can give more information in time manner than baseline heuristic.
 
 - **Analyze the search depth your agent achieves using your custom heuristic. Does search speed matter more or less than accuracy to the performance of your heuristic?**
 
-	I think that 
+	I mentioned this in analysis.
