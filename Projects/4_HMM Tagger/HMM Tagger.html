@@ -12947,8 +12947,13 @@ ul.typeahead-list  > li > a.pull-right {
 /*# sourceMappingURL=style.min.css.map */
     </style>
 <style type="text/css">
-    .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
+    pre { line-height: 125%; margin: 0; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
@@ -13017,64 +13022,6 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
-<style type="text/css">
-    
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-
-    </style>
-<style type="text/css">
-    body[data-notebook-name] > #header #header-container:not(.show-panel), /* body has data-notebook-name attribute when 
-a notebook is open. this rule won't be applied when the notebook is not open (in 404 view for example) */
-body[data-notebook-name] #menubar-container #maintoolbar:not(.show-panel),
-body[data-notebook-name] #menubar-container ul.navbar-nav:not(.show-panel) {
-  display: none;
-}
-
-#menubar.only-panel #menus.navbar-default {
-    background: #fff;
-    border-color: #fff;
-}
-
-.toolbar.with-statusbar{
-    margin-top: 3px;
-    margin-bottom: 0;
-}
-
-    </style>
 
 
 <style type="text/css">
@@ -13108,7 +13055,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13210,11 +13157,11 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">chain</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="k">import</span> <span class="n">show_model</span><span class="p">,</span> <span class="n">Dataset</span>
-<span class="kn">from</span> <span class="nn">pomegranate</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">HiddenMarkovModel</span><span class="p">,</span> <span class="n">DiscreteDistribution</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">show_model</span><span class="p">,</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">pomegranate</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">HiddenMarkovModel</span><span class="p">,</span> <span class="n">DiscreteDistribution</span>
 </pre></div>
 
     </div>
@@ -13565,10 +13512,11 @@ Stream (word, tag) pairs:
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Finish this function!</span>
     <span class="n">tag_words</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sequences_A</span><span class="p">,</span> <span class="n">sequences_B</span><span class="p">):</span>
-        <span class="n">tag_words</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">s_A</span><span class="p">,</span> <span class="n">s_B</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sequences_A</span><span class="p">,</span> <span class="n">sequences_B</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">s_A</span><span class="p">,</span> <span class="n">s_B</span><span class="p">):</span>
+            <span class="n">tag_words</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
         
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tag_words</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">tag_words</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
         
@@ -13576,9 +13524,7 @@ Stream (word, tag) pairs:
 
 
 <span class="c1"># Calculate C(t_i, w_i)</span>
-<span class="n">tags</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
-<span class="n">words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">X</span><span class="p">))</span>
-<span class="n">emission_counts</span> <span class="o">=</span> <span class="n">pair_counts</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
+<span class="n">emission_counts</span> <span class="o">=</span> <span class="n">pair_counts</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">emission_counts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span><span class="p">,</span> \
        <span class="s2">&quot;Uh oh. There should be 12 tags in your dictionary.&quot;</span>
@@ -13626,7 +13572,7 @@ Stream (word, tag) pairs:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a lookup table mfc_table where mfc_table[word] contains the tag label most frequently assigned to that word</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
 <span class="n">FakeState</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;FakeState&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
 
@@ -13634,7 +13580,7 @@ Stream (word, tag) pairs:
     <span class="c1"># NOTE: You should not need to modify this class or any of its methods</span>
     <span class="n">missing</span> <span class="o">=</span> <span class="n">FakeState</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;MISSING&gt;&quot;</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">MFCTagger</span><span class="o">.</span><span class="n">missing</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">word</span><span class="p">:</span> <span class="n">FakeState</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
         
@@ -13646,7 +13592,7 @@ Stream (word, tag) pairs:
 <span class="c1"># TODO: calculate the frequency of each tag being assigned to each word (hint: similar, but not</span>
 <span class="c1"># the same as the emission probabilities) and use it to fill the mfc_table</span>
 
-<span class="n">word_counts</span> <span class="o">=</span> <span class="n">pair_counts</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+<span class="n">word_counts</span> <span class="o">=</span> <span class="n">pair_counts</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
 
 <span class="n">mfc_table</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">word_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="p">[</span><span class="n">Counter</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">word_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()]))</span>
 
@@ -13930,10 +13876,10 @@ $$P(tag_1) = \frac{C(tag_1)}{N}$$
 <span class="sd">    then you should return a dictionary such that your_unigram_counts[NOUN] == 275558.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Finish this function!</span>
-    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">sequences</span><span class="p">))</span>
 
 <span class="c1"># TODO: call unigram_counts with a list of tag sequences from the training set</span>
-<span class="n">tag_unigrams</span> <span class="o">=</span> <span class="n">unigram_counts</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+<span class="n">tag_unigrams</span> <span class="o">=</span> <span class="n">unigram_counts</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">tag_unigrams</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">tagset</span><span class="p">,</span> \
        <span class="s2">&quot;Uh oh. It looks like your tag counts doesn&#39;t include all the tags!&quot;</span>
@@ -13991,10 +13937,10 @@ $$P(tag_1) = \frac{C(tag_1)}{N}$$
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># TODO: Finish this function!</span>
-    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sequences</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sequences</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">)))</span>
 
 <span class="c1"># TODO: call bigram_counts with a list of tag sequences from the training set</span>
-<span class="n">tag_bigrams</span> <span class="o">=</span> <span class="n">bigram_counts</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+<span class="n">tag_bigrams</span> <span class="o">=</span> <span class="n">bigram_counts</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">training_set</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tag_bigrams</span><span class="p">)</span> <span class="o">==</span> <span class="mi">144</span><span class="p">,</span> \
        <span class="s2">&quot;Uh oh. There should be 144 pairs of bigrams (12 tags x 12 tags)&quot;</span>
@@ -14262,8 +14208,8 @@ $$P(tag_1) = \frac{C(tag_1)}{N}$$
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>training accuracy basic hmm model: 97.52%
-testing accuracy basic hmm model: 95.94%
+<pre>training accuracy basic hmm model: 97.54%
+testing accuracy basic hmm model: 95.95%
 </pre>
 </div>
 </div>
@@ -14412,8 +14358,8 @@ Actual labels:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">from</span> <span class="nn">nltk</span> <span class="k">import</span> <span class="n">pos_tag</span><span class="p">,</span> <span class="n">word_tokenize</span>
-<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">brown</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">pos_tag</span><span class="p">,</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">brown</span>
 
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;brown&#39;</span><span class="p">)</span>
 <span class="n">training_corpus</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span>
